@@ -1,5 +1,9 @@
 import app from "./app";
 import { PORT } from "./env";
+import SuperAdminRouter from "./routes/superadmin.route";
+
+
+app.use("/api/superadmin",SuperAdminRouter);
 
 
 

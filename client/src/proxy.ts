@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { TOKEN_COOKIE } from "@/lib/constants";
 
-const VERIFY_ENDPOINT = "/api/verify/login";
+const VERIFY_ENDPOINT = "/api/general/verify/login";
+const BACKEND_URL = process.env.BACKEND_URL;
 
 const LAST_VERIFY_COOKIE = "scm_last_verify"; // stores timestamp
 const VERIFY_INTERVAL = 5 * 60 * 1000; // 5 minutes
@@ -36,9 +37,9 @@ export default async function proxy(req: NextRequest) {
 
   let isValid = true;
 
-  if (false) {
+  if (shouldVerify) {
     try {
-      const res = await fetch(new URL(VERIFY_ENDPOINT, req.url), {
+      const res = await fetch(`${BACKEND_URL}${VERIFY_ENDPOINT}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -46,7 +47,7 @@ export default async function proxy(req: NextRequest) {
       });
 
       const data = await res.json();
-      isValid = data?.valid === true;
+      isValid = data?.verified === true;
     } catch (err) {
       isValid = false;
     }

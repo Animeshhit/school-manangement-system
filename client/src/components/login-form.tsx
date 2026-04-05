@@ -55,11 +55,6 @@ export function LoginForm({
         })
       });
       
-      if(!res.ok){
-        const errorData = await res.json();
-        setError(errorData.message || "Login failed");
-        return;
-      }
 
       let data = await res.json();
       if(data?.success !== true || !data?.data?.token){
@@ -67,9 +62,13 @@ export function LoginForm({
         return;
       }
       // On successful login, the token is set in an HttpOnly cookie by the server, so we just need to redirect to the dashboard
-      router.push("/");
+      setTimeout(() => {
+           router.push("/");
+      }, 300);
+   
 
     } catch (error) {
+      setError("An unexpected error occurred. Please try again.");
       console.error("Login error:", error);
     } finally {
       setLoading(false);

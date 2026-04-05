@@ -57,13 +57,13 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    // if (!res.ok) {
-    //   const errorData = await res.json();
-    //   return NextResponse.json(
-    //     generateRespose(false, errorData.message, null),
-    //     { status: res.status },
-    //   );
-    // }
+    if (!res.ok) {
+      const errorData = await res.json();
+      return NextResponse.json(
+        generateRespose(false, errorData.message, null),
+        { status: res.status },
+      );
+    }
 
     const data = await res.json();
 
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true, // 🔐 server-only access
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 60 * 24 * 7, // 7 days
       path: "/",
     });
 

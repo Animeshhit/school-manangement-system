@@ -8,12 +8,12 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/verify/login:
+ * /api/general/verify/login:
  *   post:
  *     summary: Verify login token
  *     description: Verifies the authentication token sent in the Authorization header.
  *     tags:
- *       - Auth
+ *       - General
  *     parameters:
  *       - in: header
  *         name: Authorization

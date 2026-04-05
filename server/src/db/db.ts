@@ -1,4 +1,7 @@
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import { DB_URL } from '../env';
 
-const db = drizzle(DB_URL);
+// Create the connection
+const client = postgres(DB_URL);
+export const db = drizzle(client);

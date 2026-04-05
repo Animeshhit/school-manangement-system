@@ -1,0 +1,11 @@
+export { branches } from './Branch';
+export { users } from './User';
+export { teachers } from './Teacher';
+export { students } from './Student';
+export { attendances } from './Attendance';
+export { routines } from './Routine';
+export { homeworks } from './Homework';
+export { fees } from './Fee';
+export { studentFeePayments } from './StudentFeePayment';
+export { permissions } from './Permission';
+export { userPermissions } from './UserPermission';

@@ -1,5 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const neon_http_1 = require("drizzle-orm/neon-http");
+exports.db = void 0;
+const postgres_js_1 = require("drizzle-orm/postgres-js");
+const postgres_1 = __importDefault(require("postgres"));
 const env_1 = require("../env");
-const db = (0, neon_http_1.drizzle)(env_1.DB_URL);
+// Create the connection
+const client = (0, postgres_1.default)(env_1.DB_URL);
+exports.db = (0, postgres_js_1.drizzle)(client);
